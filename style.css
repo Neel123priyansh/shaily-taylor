@@ -1,226 +1,154 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    color: inherit;
-    text-decoration: none;
-    list-style: none;
-    font-family: 'Righteous', cursive;
+@import url(https://fonts.googleapis.com/css?family=Pacifico);
+body {
+  background: url(https://subtlepatterns.com/patterns/noise_lines.png);
+  font-family: 'Pacifico', cursive;
+  overflow: hidden;
+  color: #fff;
 }
-html {
-    position: relative;
-    background: #fed2e9;
-    background: linear-gradient(90deg, #fed2e9 0%, #a9c1f3 100%);
+.bgoverlay {
+  background: rgb(103, 58, 183);
+  background: rgba(103, 58, 183, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 .container {
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  margin: 120px auto 0 auto;
+  width: 320px;
 }
-h1, h2 {
-    color: #3D348B;
-    transform: rotate(-20deg); 
-    text-shadow: 8px 8px 1px #FC73BA;
+
+.ico {
+  display: block;
+  width: 320px;
+  height: 320px;
 }
-h1 {
-    font-size: 8em;
+.open .ico {
+  animation: open 4s;
+  transform: scale(10);
 }
-h1:hover {
-    color: #FC73BA;
-    text-shadow: 8px 8px 1px #3D348B;
-    transition: 0.5s;
-    -webkit-animation: beat-text 1s;
-            animation: beat-text 1s;
+.ico .title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -95px;
+  margin-top: -73px;
+  z-index: 4;
+  font-size: 50px;
+  font-family: 'Pacifico', cursive;
+  color: #fff;
+  cursor: pointer;
+  text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
 }
-.change {
+.open .ico .title {
+  opacity: 0;
+  transition: all 0.3s ease;
+  top: -100px;
+}
+.ico:before, .ico:after, .ico2:before, .ico2:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.ico:before, .ico:after, .ico2:before, .ico2:after {
+  display: block;
+  font-size: 20em;
+  color: #ff4081;
+  content: "\f004";
+  font-family: FontAwesome;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.ico2:before, .ico2:after {
+  color: #e91e63;
+}
+.ico:before {
+  z-index: 3;
+}
+.ico:after {
+  animation: explode 4s infinite;
+}
+
+.ico2:before {
+  animation: explodeSmall 3s infinite;
+}
+.ico2:after {
+  animation: explodeSmall 2s infinite;
+}
+
+.endtext {
+  opacity: 0;
+  position: absolute;
+  top: -100px;
+  width: 100%;
+}
+.open .endtext {
+  top: 0;
+  opacity: 1;
+  animation: show 5s;
+}
+.endtext .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+}
+.endtext h1, .endtext h2, .endtext h3 {
+  text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  font-weight: normal;
+}
+.endtext h1 {
+  font-size: 50px;
+}
+.endtext h2 {
+  font-size: 30px;
+}
+.endtext h3 {
+  font-size: 20px;
+}
+
+@keyframes explode {
+  from {
+    transform: scale(1);
     opacity: 1;
-    transition: 0.2s;
-}
-h2 {
-    font-size: 3em;
-    margin: -0.5em;
+  }
+  to {
+    transform: scale(1.6);
     opacity: 0;
-    transition: 0.2s;
-}
-/*TEXT ANIMATION*/
-@-webkit-keyframes beat-text {
-    0% {
-      transform: scale(1) rotate(-20deg); 
-    }
-    50% {
-      transform: scale(1.3) rotate(-20deg);
-    }
   }
-@keyframes beat-text {
-    0% {
-      transform: scale(1) rotate(-20deg); 
-    }
-    50% {
-      transform: scale(1.3) rotate(-20deg);
-    }
-  }
-/*HEART ANIMATION*/
-.heart {
-    position: absolute;
-    background-color: #FC73BA;
-    height: 3em;
-    width: 3em;
-    transform: rotate(-45deg);
-    -webkit-animation-name: beat;
-            animation-name: beat;
-    -webkit-animation-iteration-count: infinite;
-            animation-iteration-count: infinite;
-    opacity: 0.8;
 }
-.heart:after {
-    background-color: #FC73BA;
-    content: "";
-    border-radius: 50%;
-    position: absolute;
-    width: 3em;
-    height: 3em;
+@keyframes explodeSmall {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes open {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(10);
+  }
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+    top: -100px;
+  }
+  to {
+    opacity: 1;
     top: 0;
-    left: 1.7em;
-}
-.heart:before {
-    background-color: #FC73BA;
-    content: "";
-    border-radius: 50%;
-    position: absolute;
-    width: 3em;
-    height: 3em;
-    top: -1.7em;
-    left: 0;
   }
-@-webkit-keyframes beat {
-    0% {
-      transform: scale(1) rotate(-45deg);
-    }
-    50% {
-      transform: scale(0.6) rotate(-45deg);
-    }
-  }
-@keyframes beat {
-    0% {
-      transform: scale(1) rotate(-45deg);
-    }
-    50% {
-      transform: scale(0.6) rotate(-45deg);
-    }
-  }
-.heart:hover, .heart:hover.heart:before, .heart:hover.heart:after  {
-    background-color: #3D348B;
-	   transition: 0.5s;
-}
-  /*HEART*/
-.heart1 {
-    top: 25%;
-    left: 20%;
-    -webkit-animation-duration: 1.5s;
-            animation-duration: 1.5s;
-}
-.heart2 {
-    top: 40%;
-    left: 30%;
-    -webkit-animation-duration: 1.6s;
-            animation-duration: 1.6s;
-}
-.heart3 {
-    top: 65%;
-    left: 20%;
-    -webkit-animation-duration: 1.7s;
-            animation-duration: 1.7s;
-}
-.heart4 {
-    top: 10%;
-    left: 75%;
-    -webkit-animation-duration: 1.8s;
-            animation-duration: 1.8s;
-}
-.heart5 {
-    top: 70%;
-    left: 60%;
-    -webkit-animation-duration: 1.9s;
-            animation-duration: 1.9s;
-}
-.heart6 {
-    top: 18%;
-    left: 60%;
-    -webkit-animation-duration: 2s;
-            animation-duration: 2s;
-}
-.heart7 {
-    top: 55%;
-    left: 80%;
-    -webkit-animation-duration: 2.1s;
-            animation-duration: 2.1s;
-}
-.heart8 {
-    top: 70%;
-    left: 40%;
-    -webkit-animation-duration: 1.8s;
-            animation-duration: 1.8s;
-}
-.heart9 {
-    top: 80%;
-    left: 15%;
-    -webkit-animation-duration: 2.2s;
-            animation-duration: 2.2s;
-}
-.heart10 {
-    top: 10%;
-    left: 45%;
-    -webkit-animation-duration: 2.3s;
-            animation-duration: 2.3s;
-}
-.heart11 {
-    top: 75%;
-    left: 90%;
-    -webkit-animation-duration: 2.4s;
-            animation-duration: 2.4s;
-}
-.heart12 {
-    top: 80%;
-    left: 70%;
-    -webkit-animation-duration: 2.5s;
-            animation-duration: 2.5s;
-}
-.heart13 {
-    top: 5%;
-    left: 10%;
-    -webkit-animation-duration: 2.6s;
-            animation-duration: 2.6s;
-}
-.heart14 {
-    top: 35%;
-    left: 5%;
-    -webkit-animation-duration: 2.7s;
-            animation-duration: 2.7s;
-}
-.heart15 {
-    top: 60%;
-    left: 5%;
-    -webkit-animation-duration: 2.8s;
-            animation-duration: 2.8s;
-}
-.heart16 {
-    top: 35%;
-    left: 70%;
-    -webkit-animation-duration: 2.9s;
-            animation-duration: 2.9s;
-}
-.heart17 {
-    top: 40%;
-    left: 90%;
-    -webkit-animation-duration: 3s;
-            animation-duration: 3s;
-}
-.heart18 {
-    top: 15%;
-    left: 85%;
-    -webkit-animation-duration: 3.1s;
-            animation-duration: 3.1s;
 }
